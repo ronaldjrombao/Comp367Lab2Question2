@@ -31,6 +31,13 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+
+        stage('Archive Artifact') {
+            steps {
+                echo 'Archiving the built artifact...'
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
     }
 
     post {
